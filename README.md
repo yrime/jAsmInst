@@ -5,29 +5,40 @@
 >__afl_maybe_log(int id)
 
 в статические поля, методы, инструкции переходов и т.д инструментируемого класса.
+
 Для запупуска фаззинг-тестирования требуется утилита DumpWinAFL(https://github.com/yrime/DumbWinAFL), которая эмулирует работу форк-сервера Afl.
 
 ## Build
+Сборочные скрипты
 ### native build
-> g++ -I"%JAVA_HOME%/include" -I"%JAVA_HOME%/include/win32" -fPIC src\main\java\natif\natif_natifUpd.cpp -shared -o natif_natifUpd.so
+`nBuild.bat`
 ### java build
 
-`<mkdir ModifyClasses\natif>`
-
-`<mvn package && mvn compile assembly:single && COPY /B /Y target\classes\natif\upd.class ModifyClasses\natif && COPY /B /Y target\classes\natif\natifUpd.class ModifyClasses\natif>`
+`build.bat`
 
 ## Instrumentation
-COPY /B /Y %1 ModifyClasses
+instrumentaion.bat <путь до дирректории с jar> <jar файл> <шаблон пакета>
+- Необходимо указывать абсолютный путь до jar файла
+- шаблон пакета - пример ru.java.src.main . Если шаблона нет, то указывать не надо.
 
-java -jar target\jAsmInst-1.0-jar-with-dependencies %1
-cd ModifyClasses && jar uf %1 *
-cd ../
+> instrumentaion.bat  C:\Users\absolut_way\ name_jar_file.jar ru.package.filter.src
 
 ## Fuzzing
 ### Подготовка winafl
 в рабочую дирректорию необходимо скопировать файл natif_natifUpd.so
 
 ### work
-необходимо указывать абсолютный путь к инструментированному jar-файлу
+1. необходимо указывать абсолютный путь к инструментированному jar-файлу;
+2. режим фаззера - static instrumentaion - `-Y`
+3. комманда запуска java должна всегда быть в "кавычках";
+
+Запуск должен производиться следующим образом:
+
+> afl-fuzz.exe -i IN -o OUT -t 5000 -m none -Y -- -- DumpWinAFL.exe "java -jar c:\Users\yrime\IdeaProjects\winafl\bin64\login-1.0-shaded.jar -i @@"
+
+## Logs
+1. testlogfork.txt - log file DunpWinAfl;
+2. cmdOutput.txt - output from java programm
+
 
 
