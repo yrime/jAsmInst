@@ -13,5 +13,21 @@
 ### java build
 
 `<mkdir ModifyClasses\natif>`
+
 `<mvn package && mvn compile assembly:single && COPY /B /Y target\classes\natif\upd.class ModifyClasses\natif && COPY /B /Y target\classes\natif\natifUpd.class ModifyClasses\natif>`
+
+## Instrumentation
+COPY /B /Y %1 ModifyClasses
+
+java -jar target\jAsmInst-1.0-jar-with-dependencies %1
+cd ModifyClasses && jar uf %1 *
+cd ../
+
+## Fuzzing
+### Подготовка winafl
+в рабочую дирректорию необходимо скопировать файл natif_natifUpd.so
+
+### work
+необходимо указывать абсолютный путь к инструментированному jar-файлу
+
 
