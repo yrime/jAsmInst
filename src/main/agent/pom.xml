@@ -4,24 +4,26 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
-    <artifactId>jAsmInst</artifactId>
+    <groupId>org.example.my</groupId>
+    <artifactId>jAsmAgent</artifactId>
     <version>1.0</version>
 
-        <dependencies>
-            <dependency>
-                <groupId>org.ow2.asm</groupId>
-                <artifactId>asm</artifactId>
-                <version>9.2</version>
-            </dependency>
-        </dependencies>
-
+    <name>jAsmAgent</name>
     <properties>
         <maven.compiler.source>16</maven.compiler.source>
         <maven.compiler.target>16</maven.compiler.target>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.ow2.asm</groupId>
+            <artifactId>asm</artifactId>
+            <version>9.2</version>
+        </dependency>
+    </dependencies>
+
     <build>
-        <sourceDirectory>src/main/java</sourceDirectory>
+        <sourceDirectory></sourceDirectory>
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -33,11 +35,9 @@
                             <descriptorRef>jar-with-dependencies</descriptorRef>
                         </descriptorRefs>
                         <archive>
-                            <manifest>
-                                <addClasspath>true</addClasspath>
-                                <classpathPrefix>dependency/</classpathPrefix>
-                                <mainClass>jAsmInst</mainClass>
-                            </manifest>
+                            <manifestFile>
+                                manifest.txt
+                            </manifestFile>
                         </archive>
                     </configuration>
                     <executions>
@@ -49,6 +49,7 @@
                         </execution>
                     </executions>
                 </plugin>
+
             </plugins>
         </pluginManagement>
     </build>

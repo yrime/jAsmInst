@@ -9,5 +9,8 @@
         <module name="jAsmInst" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="jAsmAgent" target="16" />
+    </bytecodeTargetLevel>
   </component>
 </project>
