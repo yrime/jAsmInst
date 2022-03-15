@@ -18,6 +18,11 @@
 
 `build.bat`
 
+### javaagent build
+
+cd src\main\agent
+mvn compile assembly:single
+
 ## Instrumentation
 instrumentaion.bat <путь до дирректории с jar> <jar файл> <шаблон пакета>
 - Необходимо указывать абсолютный путь до jar файла
