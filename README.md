@@ -76,7 +76,7 @@ instrumentaion.bat <путь до дирректории с jar> <jar файл> 
                 out << "shm value failed" << std::endl;
                 out.close();
              }
-             __afl_area_ptr = (char*)areaPtr;>
+             __afl_area_ptr = (char*)areaPtr; >
   
 
 
