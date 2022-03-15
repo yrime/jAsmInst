@@ -20,8 +20,8 @@
 
 ### javaagent build
 
-cd src\main\agent
-mvn compile assembly:single
+`cd src\main\agent
+mvn compile assembly:single`
 
 ## Instrumentation
 instrumentaion.bat <путь до дирректории с jar> <jar файл> <шаблон пакета>
