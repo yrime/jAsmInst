@@ -58,5 +58,24 @@ instrumentaion.bat <путь до дирректории с jar> <jar файл> 
 1. testlogfork.txt - log file StaticWinAFL;
 2. cmdOutput.txt - output from java programm
 
+## How it works
+  
+  Фаззер основан на фаззере **WinAfl**. Утилита StaticWinAFL предназначена для эмуляции режима fork (в планах перевод функционала утилиты в нутрь инструментатора).
+  
+  Инструмантация производится с использованием пакета java ASM, на каждый опкод ветвления, входа и выхода из функции, попадания в статические поля, calls и тд 
+  
+  внедряется вызов нативного метода `__afl_maybe_log(int id)`. Метод работает следующим образом:
+  1. Генерируется псевдослучайное число от имени метода;
+  2. Данное число передается в метод `__afl_maybe_log(int id)`;
+  3. Метод вызывает преобразование shared memory фаззера winafl: `natifUpd.mapUp(i)`;
+  4. Преобразование:
+  ""HANDLE mem = OpenFileMapping(FILE_MAP_ALL_ACCESS, false, shm);
+             areaPtr = MapViewOfFile(mem, FILE_MAP_ALL_ACCESS, 0, 0, 0);
+             if(areaPtr == NULL){
+                out << "shm value failed" << std::endl;
+                out.close();
+             }
+             __afl_area_ptr = (char*)areaPtr;""
+  
 
 
