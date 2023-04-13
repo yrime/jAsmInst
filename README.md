@@ -11,13 +11,21 @@
 Для запупуска фаззинг-тестирования требуется утилита DumpWinAFL(https://github.com/yrime/StaticWinAFL), которая эмулирует работу форк-сервера Afl.
 
 ## Prepare
+
 install java
+
 install jdk
+
 add JAVA_HOME  (ex. c:\Program Files\Java\jdk-20)
+
 add jdk\bin to path
-install mingw (g++)
+
+install mingw (g++) // for x64 https://winlibs.com/
+
 add g++ to path
+
 install maven (extrant to folder)
+
 add folder\bin to path (for maven)
 
 ## Build
