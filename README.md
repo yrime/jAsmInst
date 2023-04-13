@@ -12,21 +12,14 @@
 
 ## Prepare
 
-install java
-
-install jdk
-
-add JAVA_HOME  (ex. c:\Program Files\Java\jdk-20)
-
-add jdk\bin to path
-
-install mingw (g++) // for x64 https://winlibs.com/
-
-add g++ to path
-
-install maven (extrant to folder)
-
-add folder\bin to path (for maven)
+1. install java
+2. install jdk
+3. add JAVA_HOME  (ex. c:\Program Files\Java\jdk-20)
+4. add jdk\bin to path
+5. install mingw (g++) // for x64 https://winlibs.com/
+6. add g++ to path
+7. install maven (extrant to folder)
+8. add folder\bin to path (for maven)
 
 ## Build
 Сборочные скрипты
