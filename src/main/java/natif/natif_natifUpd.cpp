@@ -2,6 +2,7 @@
 #include "natif_natifUpd.h"
 #include <iostream>
 #include <fstream>
+#include <cstring>
 #include "windows.h"
 //typedef wchar_t TCHAR;
 //g++ -I"%JAVA_HOME%/include" -I"%JAVA_HOME%/include/win32"
@@ -64,8 +65,10 @@ JNIEXPORT void JNICALL Java_natif_natifUpd_mapUp
              }
              out << "afl env: " << envbuff << std::endl;
              fuzzid = strtok(envbuff, ":");
-             strcpy_s(shm, sizeof("afl_shm_"), "afl_shm_");
-             strcat_s(shm, fuzzid);
+            // strcpy_s(shm, sizeof("afl_shm_"), "afl_shm_");
+             strcpy(shm, "afl_shm_");
+            // strcat_s(shm, fuzzid);
+             strcat(shm, fuzzid);
              out << "afl shm: " << shm << std::endl;
              HANDLE mem = OpenFileMapping(FILE_MAP_ALL_ACCESS, false, shm);
              areaPtr = MapViewOfFile(mem, FILE_MAP_ALL_ACCESS, 0, 0, 0);
