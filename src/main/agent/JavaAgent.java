@@ -9,7 +9,7 @@ public class JavaAgent {
     public static void premain(String arg, Instrumentation inst) {
         System.out.println("Hello! I`m java agent");
         int opt = 0;
-            JavaTransformer jTransformer = new JavaTransformer();
+            JavaTransformer jTransformer = new JavaTransformer(arg);
             inst.addTransformer(jTransformer);
 
     }
