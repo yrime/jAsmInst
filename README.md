@@ -58,12 +58,12 @@ instrumentaion.bat <путь до дирректории с jar> <jar файл> 
 ## use javaagent
 
 1. Добавить папку natif в jar: 'jar uf <jar-file> natif\\*' 
-2. Запуск: Строка java jv = `"java -javaagent:target\jAsmAgent-1.0-jar-with-dependencies.jar -jar <full path to jar> <arguments with @@>"`
+2. Запуск: Строка java jv = `"java -javaagent:target\jAsmAgent-1.0-jar-with-dependencies.jar="arg1;arg2" -jar <full path to jar> <arguments with @@>"`
   
   `afl-fuzz.exe -i IN -o OUT -t <time> -m none -Y -- -- StaticWinAFL <jv>`
   
 ### example
-  `afl-fuzz.exe -i IN -o OUT -t <time> -m none -Y -- -- StaticWinAFL.exe "java -javaagent:target\jAsmAgent-1.0-jar-with-dependencies.jar -jar c:\parser.jar --input=@@"`
+  `afl-fuzz.exe -i IN -o OUT -t <time> -m none -Y -- -- StaticWinAFL.exe "java -javaagent:target\jAsmAgent-1.0-jar-with-dependencies.jar="class1;class2" -jar c:\parser.jar --input=@@"`
 
 ## Logs
 1. testlogfork.txt - log file StaticWinAFL;
